@@ -1,0 +1,47 @@
+<script>
+    function computerplay() {
+        let choice = ['Rock', 'Paper', 'Scissors'];
+        let randomizer = Math.floor(Math.random() * 3);
+        return choice[randomizer];
+    }
+
+
+    function round(computerSelection, playerSelection) {
+        if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
+            return null; // case in which the round is a draw
+        } else if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'paper' || playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'scissors' || playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'rock') {
+            return 0; // case in which the computer wins
+        } else {
+            return 1; // case in which the player wins
+        }
+    }
+
+    function game() {
+        console.log("This Rock, Paper, Scissors game is in 5 round. Good Luck")
+        let playerPoints = 0;
+        let computerPoints = 0;
+
+        for (i = 0; i < 5; i++) {
+            let playerSelection = prompt("What's your next move ? : ");
+            let computerSelection = computerplay();
+            let result = round(computerSelection, playerSelection);
+            if (result === null) {
+                console.log("You both played " + computerSelection + "! This round is a draw. \n You have " + playerPoints + ". Your opponent has " + computerPoints + "\n")
+            } else if (result === 0) {
+                computerPoints++;
+                console.log("You Lose! " + computerSelection + " beats " + playerSelection + "\nYou have " + playerPoints + ". Your opponent has " + computerPoints + "\n")
+            } else if (result === 1) {
+                playerPoints++;
+                console.log("You Win! " + playerSelection + " beats " + computerSelection + "\nYou have " + playerPoints + ". Your opponent has " + computerPoints + "\n")
+            }
+        }
+
+        if (playerPoints > computerPoints) {
+            console.log("You win the game!" + "\nYou have" + playerPoints + ". Your opponent has " + computerPoints + "\n")
+        }
+
+        if (playerPoints < computerPoints) {
+            console.log("You Lose the game!" + "\nYou have" + playerPoints + ". Your opponent has " + computerPoints + "\n")
+        }
+    }
+</script>
